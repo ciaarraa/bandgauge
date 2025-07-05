@@ -4,7 +4,7 @@
 To measure internet speed and record the result. Intended to be run on a schedule.
 
 ## Prerequisites
-1. You must have (iperf3)[https://iperf.fr/iperf-download.php] downloaded and available on your path
+1. You must have [iperf3](https://iperf.fr/iperf-download.php) downloaded and available on your path
 2. You must have a remote iperf3 server running
 
 ## Configure
