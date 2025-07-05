@@ -8,7 +8,7 @@ To measure internet speed and record the result. Intended to be run on a schedul
 2. You must have a remote iperf3 server running
 
 ## Configure
-Run `bandwidth configure` to configure the IP and port of the remote iperf3 server.
+Run `bandgauge configure` to configure the IP and port of the remote iperf3 server.
 
 ## Usage
-`bandwidth test` to run a test and output the results to the default file
+`bandgauge test` to run a test and output the results to the default file
