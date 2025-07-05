@@ -23,9 +23,11 @@ other configurations required for the tool to function correctly.`,
 		fmt.Scan(&remote_host)
 		fmt.Print("Enter the port of the remote iperf3 server: ")
 		fmt.Scan(&port)
+		logPath, _ := getLogPath()
 		cfg := Config{
 			RemoteHost: remote_host,
 			Port:       port,
+			LogFile:    logPath,
 		}
 		if err := saveConfig(cfg); err != nil {
 			fmt.Println("Error saving configuration:", err)
@@ -38,6 +40,7 @@ other configurations required for the tool to function correctly.`,
 type Config struct {
 	RemoteHost string `json:"remote_host"`
 	Port       string `json:"port"`
+	LogFile    string `json:"log_file,omitempty"` // Optional log file path
 }
 
 func getConfigPath() (string, error) {
@@ -50,6 +53,18 @@ func getConfigPath() (string, error) {
 		return "", err
 	}
 	return filepath.Join(appDir, "config.json"), nil
+}
+
+func getLogPath() (string, error) {
+	configDir, err := os.UserConfigDir()
+	if err != nil {
+		return "", err
+	}
+	appDir := filepath.Join(configDir, "bandgauge")
+	if err := os.MkdirAll(appDir, 0755); err != nil {
+		return "", err
+	}
+	return filepath.Join(appDir, "log.csv"), nil
 }
 
 func saveConfig(cfg Config) error {
